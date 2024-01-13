@@ -2,7 +2,6 @@ const input = document.querySelector('input');
 const timer = document.querySelector('.timer');
 const words = document.querySelector('.words');
 const current = document.querySelector('.current')
-const next = document.querySelector('.next')
 const button = document.querySelector('.btn')
 const answer = document.querySelector('.answer')
 
@@ -15,59 +14,39 @@ let userInput = '';
 let endOfArray = 10;
 let startOfArray = 0;
 
-let WORDS= "If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance If you want to increase the potato and fight with dogs and cats in the rain we shall dance"
-// let NEXT_WORDS = "with dogs and cats in the rain we shall dance"
-
-
+const WORDS = "The brown cat jumps over a lazy dog as the sun sets behind the hills in a land far away where dreams come true every night while stars twinkle brightly in the sky with a gentle breeze blowing through the trees and a river flowing calmly nearby reflecting the moons glow creating a peaceful scene that soothes the soul and inspires creativity in the minds of those who gaze upon it with wonder and amazement in this enchanted place where time seems to stand still imagination takes flight and possibilities are endless like a canvas waiting for an artists brushstroke to bring vibrant colors to life in a masterpiece that tells a story of love joy and resilience against the backdrop of natures beauty the chirping of crickets adds a melodic rhythm to the symphony of the night and the fragrance of flowers perfumes the air with a sweet aroma that lingers inviting all to breathe deeply and savor the moment Its a haven of tranquility where worries melt away and the only sound is the rustling of leaves in the gentle breeze creating a serene melody that resonates in the heart as you type away envision this idyllic scene unfolding words flowing effortlessly like a stream of consciousness dancing across the keyboard capturing the essence of the magical landscape each word becomes a step in the dance a stroke on the canvas building a tapestry of text that paints a vivid picture for the reader the challenge is not just to type but to immerse yourself in the words letting them guide your fingers in a dance of creation as you craft a narrative that transports the reader to a world where words are not just symbols but gateways to other realms of imagination inviting them to join in the dance and become part of the story that unfolds with every keystroke"
 listOfWords = WORDS.split(' ');
-// listOfNextWords = NEXT_WORDS.split(' ')
-
-listOfWordsSpan = listOfWords.map((word, index) => `<span class =1>${word}</span>`);
-// listOfNextWordsSpan = listOfNextWords.map((word, index) => `<span class =1>${word}</span>`);
-
-
+listOfWordsSpan = listOfWords.map(word => `<span class =1>${word}</span>`);
 
 current.innerHTML = listOfWordsSpan.slice(startOfArray,endOfArray).join(' ');
-// next.innerHTML = listOfNextWordsSpan.join(' ')
-console.log(listOfWordsSpan.slice(0,4).join(' '), 'SPAN')
 
 
 input.addEventListener('input', e =>{
     userInput = e.target.value.toLowerCase();
 
-    if(e.target.value.length >= 1) timerStart = true
+    if(userInput.length >= 1) timerStart = true
 
-    if(e.target.value.includes(' ')){
+    if(userInput.includes(' ')){
         if(userInput.slice() === (listOfWords[i].toLowerCase() + " ")){
-
-            console.log(listOfWords[i], 'LIST')
             listOfWordsSpan[i] = listOfWordsSpan[i].replace('1', 'passed')
-            console.log(listOfWordsSpan[i], "SPAn")
-            console.log(startOfArray, endOfArray)
             current.innerHTML = listOfWordsSpan.slice(startOfArray,endOfArray).join(' ');
+
             score++;
             counter++
             i++;
 
             if(endOfArray != listOfWordsSpan.length){
-                if(counter === 4){
-                    startOfArray += 4
-                    endOfArray += 4;
+                if(counter === 5){
+                    startOfArray += 5
+                    endOfArray += 5;
                     counter = 0
                 }
             }
-
-
-            console.log(score, "SCORE")
         } else {
             score = score
         }
-        console.log('reset')
-        console.log(userInput + 'USERINPUT')
         e.target.value= ''
         userInput = ''
-        // i++
-        console.log(i, 'I')
     }
 })
 
@@ -75,35 +54,15 @@ button.addEventListener('click', () => {
     location.reload()
 })
 
-
-//  TIMER
-
 const TIMER = setInterval(() => {
-    if(timerStart && time <= 60){
+    if(timerStart){
         time++
-        console.log(time)
         timer.innerHTML= time;
         
         if(time === 60){
-            // alert(`Your score: ${score}`);
-            answer.innerText = `Your Typing Speed: ${score} words per minute`
+            answer.innerHTML = `Your Typing Speed: <span class="ans">${score}</span> words per minute`
             button.style.display = 'block'
             clearInterval(TIMER)
         }
     }
-    
 }, 1000)
-
-
-
-// COMPARING THE INPUT TO THE WORDS
-console.log(listOfWords)
-
-// while(time < 60){
-//     if(e.target.value === listOfWords[i]){
-//         score++;
-//     }
-//     i++;
-//     console.log(score);
-// }
-

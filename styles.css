@@ -21,6 +21,7 @@ input {
 }
 
 .words {
+    font-style: italic;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5rem;
@@ -49,14 +50,19 @@ input {
     display: none;
 }
 
+.btn:hover {
+    color: red;
+}
+
 
 p {
     text-align: center;
+    font-size: 1.5rem;
 }
 
-/* .answer {
-    display: none;
-} */
+.ans {
+    color: red;
+}
 
 
 
